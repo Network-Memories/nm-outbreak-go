@@ -1,49 +1,54 @@
-<div align="center">
+<p align="center"><img src="../../assets/banner.svg" alt="NM-OUTBREAK-GO — Resident Evil Outbreak" width="100%" /></p>
 
-# NM-Outbreak Go
+<p align="center"><a href="../../README.md">English</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português (Brasil)</a> · <strong>Русский</strong> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <a href="README.zh-CN.md">简体中文</a></p>
 
-**Единый сервер Resident Evil Outbreak (File #1 и File #2)**  
-*Нативная поддержка западных (SNAP) и японских (KDDI) клиентов PS2 — без патчей клиента*
+<h3 align="center">Самостоятельный игровой сервер · Resident Evil Outbreak (File #1 и File #2)</h3>
 
-[![Go](https://img.shields.io/badge/Go-1.24+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue?style=for-the-badge)](LICENSE)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](docker-compose.yml)
-[![Status](https://img.shields.io/badge/Status-Work%20in%20Progress-orange?style=for-the-badge)](#)
+<p align="center">Go 1.24 · Docker Compose · SNAP (US/PAL) и KDDI (JP)</p>
 
-[🇫🇷 Français](README.md) • [🇬🇧 English](README.en.md) • [🇷🇺 Русский](README.ru.md)
+[Совместимость](../../docs/COMPATIBILITY.md) · [Установка](../../docs/INSTALL.md) · [Архитектура](../../docs/ARCHITECTURE.md) · [Протокол](../../docs/PROTOCOL.md) · [Лицензия](../../LICENSE)
 
-</div>
+> **В разработке.** Этот репозиторий постоянно улучшается по мере проведения измерений протокола и проверок в лаборатории. Проверки автономной установки отслеживаются отдельно. Это не означает полную поддержку всех игр, режимов, регионов или типов NAT.
 
----
+Единый сервер на Go, поддерживающий оригинальные западные (**SNAP**) и японские (**KDDI**) клиенты PS2 без патчей клиента.
 
-> [!NOTE]
-> Этот репозиторий находится в активной разработке и постоянно улучшается по мере проведения измерений и проверок в лаборатории.
+## Подтверждённые и проверенные сценарии
 
-## Быстрый старт
+| Игра | Платформа | Статус |
+| --- | --- | --- |
+| Resident Evil Outbreak (File #1) | PS2 (NTSC-J ↔ NTSC-U) | Смешанный запуск JAP → US и игра подтверждены в лаборатории |
+| Resident Evil Outbreak: File #2 | PS2 (PAL / NTSC-U ↔ NTSC-J) | Смешанное лобби, запуск и игра подтверждены в лаборатории |
 
-```bash
+<details><summary><strong>Другие проверенные и частичные сценарии</strong></summary>
+
+| Игра | Платформа | Статус |
+| --- | --- | --- |
+| Resident Evil Outbreak (File #1) | PS2 (хост NTSC-U → NTSC-J) | Обратный вход и `StatWord` подтверждены; запуск с хоста US ожидает проверки |
+| Resident Evil Outbreak: File #2 | PS2 (3–4 игрока, особые режимы) | `MixedEnginePeers` пока ограничен 2 до замеров с несколькими клиентами |
+
+</details>
+
+**[Полный каталог игр и изданий](../../docs/COMPATIBILITY.md)**
+
+## Запуск локального экземпляра
+
+Запускайте из корня репозитория. Генерируйте собственные секреты; держите базы данных и панели управления закрытыми.
+
+```sh
 OUTBREAK_HOST=127.0.0.1 docker compose up --build -d
 ```
 
-| Сервис | Протокол / Порт | Назначение |
-|---|---|---|
-| **SNAP Bootstrap** | `9090/udp` | Начальное перенаправление клиентов US/PAL |
-| **SNAP File #1 & #2** | `9091/udp`, `9092/udp` | Лобби и игра PS2 US / PAL |
-| **KDDI File #1** | `8300/tcp`, `8690/tcp` | Лобби и игра PS2 JP (`SLPM_654.28`) |
-| **KDDI File #2** | `8200/tcp`, `8590/tcp` | Лобби и игра PS2 JP (`SLPM_656.92`) |
-| **API и веб-портал** | `18090/tcp`, `18091/tcp` | JSON API (`/state`) и нативный портал |
-| **Веб-статус** | `8080/tcp` | Панель статуса в реальном времени (`web/index.html`) |
+[Прочитайте руководство по установке перед открытием игровых портов.](../../docs/INSTALL.md)
 
-## Документация
+## Структура репозитория
 
-- 📘 [Установка и настройка](docs/INSTALL.md)
-- 🏗️ [Архитектура и модули](docs/ARCHITECTURE.md)
-- 🔌 [Протокол SNAP и KDDI](docs/PROTOCOL.md)
-- 📄 [Уведомления и сторонние лицензии](THIRD_PARTY_NOTICES.md)
-
-## Лицензия
-
-Распространяется под лицензией **AGPL-3.0-or-later**. См. [LICENSE](LICENSE) и [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+| Путь | Описание |
+| --- | --- |
+| `cmd/nm-outbreak/` | Точка входа сервера |
+| `internal/` | Общее ядро, транспорты SNAP/KDDI, модули File #1 и File #2 |
+| `web/` | Панель статуса в реальном времени (`http://localhost:8080`) |
+| `tools/` | Локальные скрипты настройки и проверки протокола |
+| `docs/` | Установка, архитектура, совместимость и заметки по протоколу |
 
 ## Источники и ссылки
 
