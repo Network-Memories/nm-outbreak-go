@@ -1,19 +1,23 @@
+<div align="center">
+
 # NM-Outbreak Go
 
-[Français](README.md) | [English](README.en.md)
+**Unified Resident Evil Outbreak Server (File #1 & File #2)**  
+*Native Western (SNAP) and Japanese (KDDI) PS2 client support — no client patches*
+
+[![Go](https://img.shields.io/badge/Go-1.24+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue?style=for-the-badge)](LICENSE)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](docker-compose.yml)
+[![Status](https://img.shields.io/badge/Status-Work%20in%20Progress-orange?style=for-the-badge)](#)
+
+[🇫🇷 Français](README.md) • [🇬🇧 English](README.en.md)
+
+</div>
+
+---
 
 > [!NOTE]
 > This repository is an active work in progress, continuously improved as protocol measurements and lab validations advance.
-
-Unified **Resident Evil Outbreak** (File #1 & File #2) server written in Go, supporting original Western (**SNAP**) and Japanese (**KDDI**) PS2 clients without client patches.
-
-## Contents
-
-- [Quick Start](#quick-start)
-- [Documentation](#documentation)
-- [Web Status Page](#web-status-page)
-- [License](#license)
-- [Sources & References](#sources--references)
 
 ## Quick Start
 
@@ -21,20 +25,21 @@ Unified **Resident Evil Outbreak** (File #1 & File #2) server written in Go, sup
 OUTBREAK_HOST=127.0.0.1 docker compose up --build -d
 ```
 
-- **SNAP (PS2 US/PAL)**: `9090/udp` (bootstrap), `9091/udp` (File #1), `9092/udp` (File #2)
-- **KDDI (PS2 JP)**: `8300/tcp` & `8690/tcp` (File #1), `8200/tcp` & `8590/tcp` (File #2)
-- **API & Web**: `18090/tcp` (JSON state), `18091/tcp` (native portal), `8080/tcp` (status page)
+| Service | Protocol / Port | Role |
+|---|---|---|
+| **SNAP Bootstrap** | `9090/udp` | Initial US/PAL client redirection |
+| **SNAP File #1 & #2** | `9091/udp`, `9092/udp` | PS2 US / PAL lobby & gameplay |
+| **KDDI File #1** | `8300/tcp`, `8690/tcp` | PS2 JP lobby & gameplay (`SLPM_654.28`) |
+| **KDDI File #2** | `8200/tcp`, `8590/tcp` | PS2 JP lobby & gameplay (`SLPM_656.92`) |
+| **API & Web Portal** | `18090/tcp`, `18091/tcp` | JSON state API (`/state`) & native portal |
+| **Web Status UI** | `8080/tcp` | Live status dashboard (`web/index.html`) |
 
 ## Documentation
 
-- [Installation & Configuration](docs/INSTALL.md)
-- [Architecture & Modules](docs/ARCHITECTURE.md)
-- [SNAP & KDDI Protocol](docs/PROTOCOL.md)
-- [Third-Party Notices](THIRD_PARTY_NOTICES.md)
-
-## Web Status Page
-
-A lightweight web UI is served on `http://localhost:8080` (`web/index.html`), displaying live active rooms and online players via `GET /state` (`18090/tcp`).
+- 📘 [Installation & Configuration](docs/INSTALL.md)
+- 🏗️ [Architecture & Modules](docs/ARCHITECTURE.md)
+- 🔌 [SNAP & KDDI Protocol](docs/PROTOCOL.md)
+- 📄 [Third-Party Notices](THIRD_PARTY_NOTICES.md)
 
 ## License
 
