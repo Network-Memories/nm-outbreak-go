@@ -10,7 +10,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](docker-compose.yml)
 [![Status](https://img.shields.io/badge/Status-Work%20in%20Progress-orange?style=for-the-badge)](#)
 
-[🇫🇷 Français](README.md) • [🇬🇧 English](README.en.md)
+[🇫🇷 Français](README.md) • [🇬🇧 English](README.en.md) • [🇷🇺 Русский](README.ru.md)
 
 </div>
 
