@@ -2,7 +2,6 @@ services:
   outbreak:
     build: .
     environment:
-      NM_IDENTITY_MODE: standalone
       NM_OUTBREAK_BIND_HOST: 0.0.0.0
       NM_OUTBREAK_ADVERTISE_HOST: ${OUTBREAK_HOST:-127.0.0.1}
       NM_OUTBREAK_STATE_ADDR: 0.0.0.0:18090
