@@ -1,0 +1,28 @@
+services:
+  outbreak:
+    build: .
+    environment:
+      NM_IDENTITY_MODE: standalone
+      NM_OUTBREAK_BIND_HOST: 0.0.0.0
+      NM_OUTBREAK_ADVERTISE_HOST: ${OUTBREAK_HOST:-127.0.0.1}
+      NM_OUTBREAK_STATE_ADDR: 0.0.0.0:18090
+      NM_OUTBREAK_WEB_ADDR: 0.0.0.0:18091
+    ports:
+      - "9090:9090/udp"
+      - "9091:9091/udp"
+      - "9092:9092/udp"
+      - "8200:8200/tcp"
+      - "8300:8300/tcp"
+      - "8590:8590/tcp"
+      - "8690:8690/tcp"
+      - "18090:18090/tcp"
+      - "18091:18091/tcp"
+
+  web-stats:
+    image: nginx:alpine
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - outbreak

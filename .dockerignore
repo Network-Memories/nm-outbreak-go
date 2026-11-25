@@ -1,0 +1,11 @@
+bin/
+state/
+.git/
+.env
+.env.*
+**/*.native-key
+**/accounts.json
+**/__pycache__/
+**/*.pyc
+**/*.log
+**/*.out

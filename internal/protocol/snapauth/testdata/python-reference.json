@@ -1,0 +1,9 @@
+{
+  "Seed": "0123456789abcdef0123456789abcdef",
+  "Secret": "fixture-once-only-proof",
+  "Magic": "SgK+QZh+qyoMD4h+RF031uvBdDQ=",
+  "Port": 9090,
+  "Challenge": "uNM4vxoYTsXglhx4dpX077EpmV78LEQp4JYceHaV9O+xKZle/CxEKYC4qGAtrbrlgLioYC2tuuWAuKhgLa265YC4qGAtrbrlgLioYC2tuuWAuKhgLa265YC4qGAtrbrlgLioYC2tuuWAuKhgLa265YC4qGAtrbrlgLioYC2tuuWAuKhgLa265WUr3iaVxSK3/LXqWQQSc8ZESq51jKDdDAeri3lmx74s+Q56kCfuMz3T3P08Wc1kHNPc/TxZzWQc09z9PFnNZBzT3P08Wc1kHNPc/TxZzWQc09z9PFnNZBzT3P08Wc1kHNPc/TxZzWQc09z9PFnNZBzT3P08Wc1kHNPc/TxZzWQc09z9PFnNZBzXVKXgRN4Zmw==",
+  "Answer": "gLioYC2tuuXTiQArzOQW3sxML7TO7RJ+iVxpcSMLIo+AuKhgLa265YC4qGAtrbrlgLioYC2tuuWAuKhgLa265YC4qGAtrbrlgLioYC2tuuWAuKhgLa265YC4qGAtrbrlgLioYC2tuuWAuKhgLa265YC4qGAtrbrlgLioYC2tuuWAuKhgLa265Q==",
+  "Success": "gyeOsrupxEuInsRh5yLv2oC4qGAtrbrlgLioYC2tuuWAuKhgLa265SBhUIbYd2/frgh4iL4im4uAuKhgLa265Q=="
+}

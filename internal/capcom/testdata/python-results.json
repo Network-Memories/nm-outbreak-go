@@ -1,0 +1,101 @@
+[
+  {
+    "sequence": 0,
+    "payload": "000000000902e70b2134363c3e2c000300005dc000000000000702080a3d29313d01040002000000000008023a0a3d29313d7e00960000000000000001000000020000000300000004000000050000000600000007",
+    "expected": {
+      "scenario": 0,
+      "mode": 0,
+      "cleared": false,
+      "character": 3,
+      "clear_ticks": 24000,
+      "points": 0,
+      "teammates": [
+        {
+          "name": "Guest",
+          "alive": true,
+          "character": 4
+        },
+        {
+          "name": "Guest2",
+          "alive": false,
+          "character": 150
+        }
+      ],
+      "echo_ticks": 0,
+      "echo_replies": 2,
+      "echo_losses": 3,
+      "network_error": 1,
+      "peak_queue": 4,
+      "peak_location": 5,
+      "peak_messages": 6,
+      "flags": 7,
+      "login": "Fixture"
+    }
+  },
+  {
+    "sequence": 255,
+    "payload": "010104000902e6f42037373b3f2f010300005dc0000004d200070207f53c2a303a010400027fff000000080239f53c2a303a7f00960000000000000001000000020000000300000004000000050000000600000007",
+    "expected": {
+      "scenario": 4,
+      "mode": 1,
+      "cleared": true,
+      "character": 3,
+      "clear_ticks": 24000,
+      "points": 1234,
+      "teammates": [
+        {
+          "name": "Guest",
+          "alive": true,
+          "character": 4
+        },
+        {
+          "name": "Guest2",
+          "alive": false,
+          "character": 150
+        }
+      ],
+      "echo_ticks": 0,
+      "echo_replies": 2,
+      "echo_losses": 3,
+      "network_error": 1,
+      "peak_queue": 4,
+      "peak_location": 5,
+      "peak_messages": 6,
+      "flags": 7,
+      "login": "Fixture"
+    }
+  },
+  {
+    "sequence": 7,
+    "payload": "01070a000909ee0c283f3f333727010300005dc0000000000007090f0d342238320104000207070000000809410d342238327700960000000000000001000000020000000300000004000000050000000600000007",
+    "expected": {
+      "scenario": 10,
+      "mode": 7,
+      "cleared": true,
+      "character": 3,
+      "clear_ticks": 24000,
+      "points": 0,
+      "teammates": [
+        {
+          "name": "Guest",
+          "alive": true,
+          "character": 4
+        },
+        {
+          "name": "Guest2",
+          "alive": false,
+          "character": 150
+        }
+      ],
+      "echo_ticks": 0,
+      "echo_replies": 2,
+      "echo_losses": 3,
+      "network_error": 1,
+      "peak_queue": 4,
+      "peak_location": 5,
+      "peak_messages": 6,
+      "flags": 7,
+      "login": "Fixture"
+    }
+  }
+]

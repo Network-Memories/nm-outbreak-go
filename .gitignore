@@ -1,0 +1,12 @@
+/bin/
+/state/
+/coverage*.out
+*.test
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+
+*.native-key
+/accounts.json

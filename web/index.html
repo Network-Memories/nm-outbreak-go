@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outbreak Server — Statut & Parties en ligne</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .meta { color: #94a3b8; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 1rem; }
+    .card .label { color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; }
+    .card .value { font-size: 1.6rem; font-weight: 700; margin-top: 0.25rem; }
+    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 8px; overflow: hidden; }
+    th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid #334155; }
+    th { background: #0f172a; color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Outbreak Server — Statut en direct</h1>
+    <div class="meta" id="status">Chargement...</div>
+    <div class="grid">
+      <div class="card"><div class="label">Salles actives</div><div class="value" id="rooms-count">-</div></div>
+      <div class="card"><div class="label">Joueurs en ligne</div><div class="value" id="players-count">-</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Jeu</th><th>Salle</th><th>Joueurs</th><th>État</th></tr></thead>
+      <tbody id="rooms-body"><tr><td colspan="4">Aucune salle active</td></tr></tbody>
+    </table>
+  </div>
+  <script>
+    const api = location.protocol + '//' + location.hostname + ':18090/state';
+    async function refresh() {
+      try {
+        const res = await fetch(api);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const rooms = data.rooms || [];
+        const players = rooms.reduce((acc, r) => acc + (r.members ? r.members.length : 0), 0);
+        document.getElementById('status').textContent = 'Connecté à ' + api;
+        document.getElementById('rooms-count').textContent = rooms.length;
+        document.getElementById('players-count').textContent = players;
+        const tbody = document.getElementById('rooms-body');
+        if (!rooms.length) {
+          tbody.innerHTML = '<tr><td colspan="4">Aucune salle active</td></tr>';
+          return;
+        }
+        tbody.innerHTML = rooms.map(r => `<tr><td>${r.game || '-'}</td><td>${r.title || '-'}</td><td>${(r.members||[]).length}/${r.max_players||4}</td><td>${r.playing ? 'En jeu' : 'Attente'}</td></tr>`).join('');
+      } catch (e) {
+        document.getElementById('status').textContent = 'Hors ligne (' + e.message + ')';
+      }
+    }
+    refresh();
+    setInterval(refresh, 5000);
+  </script>
+</body>
+</html>

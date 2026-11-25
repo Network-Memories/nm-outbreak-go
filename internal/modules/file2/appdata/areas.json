@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Zone libre",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 0
+  },
+  {
+    "title": "Cauchemar",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 1,
+    "rules": {
+      "friendly_fire": "host",
+      "nightmare": "on"
+    }
+  },
+  {
+    "title": "Survie",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 2,
+    "rules": {
+      "friendly_fire": "on"
+    }
+  },
+  {
+    "title": "Panic",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 3,
+    "rules": {
+      "friendly_fire": "on",
+      "nightmare": "on"
+    }
+  },
+  {
+    "title": "Infini",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 4,
+    "rules": {
+      "friendly_fire": "host",
+      "nightmare": "host",
+      "infinity": "on"
+    }
+  },
+  {
+    "title": "reserver",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 0,
+    "enabled": false
+  },
+  {
+    "title": "TESTEUR",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 5
+  },
+  {
+    "title": "Elimination",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 6
+  },
+  {
+    "title": "Boss Rush",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 7
+  },
+  {
+    "title": "Zone SECRETE",
+    "subtitle": "",
+    "description": "",
+    "difficulty": "host",
+    "rank_kind": 0,
+    "enabled": false
+  }
+]
