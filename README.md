@@ -44,6 +44,7 @@ Distribué sous licence **AGPL-3.0-or-later**. Voir [LICENSE](LICENSE) et [THIRD
 
 Remerciements et crédits aux créateurs et contributeurs des projets **BHO / KDDI / Outbreak** : **panzer punk**, **no23 / obsrv.org** (`BioServer`), **gh0stl1ne** (`BioServer2`), **GrenderG** (`openSNAP`) et **Ninjacornix** (`REO`).
 
+- **bioserver-docker / panzer punk** (https://github.com/panzer-punk/bioserver-docker) : conteneurisation et intégration de référence BioServer.
 - **openSNAP** (https://github.com/GrenderG/openSNAP) : référence de protocole SNAP et base du portage du codec et du défi natif Go (`SLUS_207.65`, `SLES_533.19`, `SLUS_209.84`).
 - **obsrv / BioServer** (https://obsrv.org) : code Java adapté vers Go pour le cadrage, la connexion et la navigation KDDI (`SLPM_654.28`, `SLPM_656.92`).
 - **BioServer2 / gh0stl1ne** (https://gitlab.com/gh0stl1ne/Bioserver2) : code de référence et enveloppes natives portées sous AGPL-3.0 (`EVENTDAT`, `CHATOUT`).
