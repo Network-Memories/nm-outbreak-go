@@ -1,6 +1,6 @@
 <p align="center"><img src="assets/banner.svg" alt="NM-OUTBREAK-GO — Resident Evil Outbreak" width="100%" /></p>
 
-<p align="center"><strong>English</strong> · <a href="docs/i18n/README.fr.md">Français</a> · <a href="docs/i18n/README.ru.md">Русский</a></p>
+<p align="center"><strong>English</strong> · <a href="docs/i18n/README.fr.md">Français</a> · <a href="docs/i18n/README.de.md">Deutsch</a> · <a href="docs/i18n/README.es.md">Español</a> · <a href="docs/i18n/README.pt-BR.md">Português (Brasil)</a> · <a href="docs/i18n/README.ru.md">Русский</a> · <a href="docs/i18n/README.ja.md">日本語</a> · <a href="docs/i18n/README.ko.md">한국어</a> · <a href="docs/i18n/README.zh-CN.md">简体中文</a></p>
 
 <h3 align="center">Self-hosted game server software · Resident Evil Outbreak (File #1 &amp; File #2)</h3>
 
