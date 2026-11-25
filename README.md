@@ -327,6 +327,11 @@ Aucune activation en production.
 
 ## Sources et références
 
+> [!NOTE]
+> Ce dépôt est un travail en cours, amené à être amélioré et complété au fil des mesures et validations en laboratoire.
+>
+> Remerciements et crédits aux créateurs et contributeurs des projets **BHO / KDDI / Outbreak** qui ont rendu ces travaux possibles : **panzer punk**, **no23 / obsrv.org** (`BioServer`), **gh0stl1ne** (`BioServer2`), **GrenderG** (`openSNAP`) et **Ninjacornix** (`REO`).
+
 - **openSNAP** (https://github.com/GrenderG/openSNAP) : référence de protocole SNAP et base du portage du codec et du défi natif Go (longueurs, marqueur final, messages multiples) pour les versions occidentales (`SLUS_207.65`, `SLES_533.19`, `SLUS_209.84`).
 - **obsrv / BioServer** (https://obsrv.org) : code Java adapté vers Go pour le cadrage, la connexion et la navigation KDDI des versions japonaises (`SLPM_654.28`, `SLPM_656.92`) ; référence des variantes natives.
 - **REO** (https://github.com/Ninjacornix/reo) : recherche et références historiques sur le protocole Outbreak.
