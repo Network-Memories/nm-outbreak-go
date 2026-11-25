@@ -1,59 +1,64 @@
-<div align="center">
+<p align="center"><img src="assets/banner.svg" alt="NM-OUTBREAK-GO — Resident Evil Outbreak" width="100%" /></p>
 
-# NM-Outbreak Go
+<p align="center"><strong>English</strong> · <a href="docs/i18n/README.fr.md">Français</a> · <a href="docs/i18n/README.ru.md">Русский</a></p>
 
-**Serveur unifié Resident Evil Outbreak (File #1 & File #2)**  
-*Support natif PS2 occidental (SNAP) et japonais (KDDI) — sans patch client*
+<h3 align="center">Self-hosted game server software · Resident Evil Outbreak (File #1 &amp; File #2)</h3>
 
-[![Go](https://img.shields.io/badge/Go-1.24+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue?style=for-the-badge)](LICENSE)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](docker-compose.yml)
-[![Status](https://img.shields.io/badge/Status-Work%20in%20Progress-orange?style=for-the-badge)](#)
+<p align="center">Go 1.24 · Docker Compose · SNAP (US/PAL) &amp; KDDI (JP)</p>
 
-[🇫🇷 Français](README.md) • [🇬🇧 English](README.en.md) • [🇷🇺 Русский](README.ru.md)
+[Game compatibility](docs/COMPATIBILITY.md) · [Installation](docs/INSTALL.md) · [Architecture](docs/ARCHITECTURE.md) · [Protocol](docs/PROTOCOL.md) · [License](LICENSE)
 
-</div>
+> **Work in progress.** This repository is continuously improved as protocol measurements and lab validations advance. Standalone installation checks are tracked separately. This is not a blanket claim that every game, mode, region or NAT is supported.
 
----
+Unified Go server supporting original Western (**SNAP**) and Japanese (**KDDI**) PS2 clients without client patches.
 
-> [!NOTE]
-> Ce dépôt est un travail en cours, amené à être amélioré et complété au fil des mesures et validations en laboratoire.
+## Confirmed & tested paths
 
-## Démarrage rapide
+| Game | Platform | Status |
+| --- | --- | --- |
+| Resident Evil Outbreak (File #1) | PS2 (NTSC-J ↔ NTSC-U) | Mixed JAP → US launch &amp; gameplay confirmed in lab |
+| Resident Evil Outbreak: File #2 | PS2 (PAL / NTSC-U ↔ NTSC-J) | Mixed lobby, launch &amp; gameplay confirmed in lab |
 
-```bash
+<details><summary><strong>Other tested and partial paths</strong></summary>
+
+| Game | Platform | Status |
+| --- | --- | --- |
+| Resident Evil Outbreak (File #1) | PS2 (NTSC-U host → NTSC-J) | Reverse join &amp; `StatWord` confirmed; US-host launch validation pending |
+| Resident Evil Outbreak: File #2 | PS2 (3–4 players, special modes) | `MixedEnginePeers` currently bounded to 2 pending multi-client measurement |
+
+</details>
+
+**[Complete game and edition catalogue](docs/COMPATIBILITY.md)**
+
+## Start a local instance
+
+Run from the repository root. Generate your own secrets; keep databases and control interfaces private.
+
+```sh
 OUTBREAK_HOST=127.0.0.1 docker compose up --build -d
 ```
 
-| Service | Protocole / Port | Rôle |
-|---|---|---|
-| **SNAP Bootstrap** | `9090/udp` | Redirection initiale des clients US/PAL |
-| **SNAP File #1 & #2** | `9091/udp`, `9092/udp` | Lobby & jeu PS2 US / PAL |
-| **KDDI File #1** | `8300/tcp`, `8690/tcp` | Lobby & jeu PS2 JP (`SLPM_654.28`) |
-| **KDDI File #2** | `8200/tcp`, `8590/tcp` | Lobby & jeu PS2 JP (`SLPM_656.92`) |
-| **API & Portail Web** | `18090/tcp`, `18091/tcp` | API JSON (`/state`) & portail natif |
-| **Tableau de bord Web** | `8080/tcp` | Interface de statut en direct (`web/index.html`) |
+[Read the installation guide before opening any game ports.](docs/INSTALL.md)
 
-## Documentation
+## Repository map
 
-- 📘 [Installation & configuration](docs/INSTALL.md)
-- 🏗️ [Architecture & modules](docs/ARCHITECTURE.md)
-- 🔌 [Protocole SNAP & KDDI](docs/PROTOCOL.md)
-- 📄 [Notices & licences tierces](THIRD_PARTY_NOTICES.md)
+| Path | Description |
+| --- | --- |
+| `cmd/nm-outbreak/` | Server entrypoint |
+| `internal/` | Core engine, SNAP/KDDI transports, File #1 &amp; File #2 modules |
+| `web/` | Live status dashboard (`http://localhost:8080`) |
+| `tools/` | Local bootstrap and protocol verification scripts |
+| `docs/` | Installation, architecture, compatibility and protocol notes |
 
-## Licence
+## Sources & References
 
-Distribué sous licence **AGPL-3.0-or-later**. Voir [LICENSE](LICENSE) et [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Credits and thanks to the creators and contributors of the **BHO / KDDI / Outbreak** projects: **panzer punk**, **no23 / obsrv.org** (`BioServer`), **gh0stl1ne** (`BioServer2`), **GrenderG** (`openSNAP`), and **Ninjacornix** (`REO`).
 
-## Sources et références
-
-Remerciements et crédits aux créateurs et contributeurs des projets **BHO / KDDI / Outbreak** : **panzer punk**, **no23 / obsrv.org** (`BioServer`), **gh0stl1ne** (`BioServer2`), **GrenderG** (`openSNAP`) et **Ninjacornix** (`REO`).
-
-- **bioserver-docker / panzer punk** (https://github.com/panzer-punk/bioserver-docker) : conteneurisation et intégration de référence BioServer.
-- **openSNAP** (https://github.com/GrenderG/openSNAP) : référence de protocole SNAP et base du portage du codec et du défi natif Go (`SLUS_207.65`, `SLES_533.19`, `SLUS_209.84`).
-- **obsrv / BioServer** (https://obsrv.org) : code Java adapté vers Go pour le cadrage, la connexion et la navigation KDDI (`SLPM_654.28`, `SLPM_656.92`).
-- **BioServer2 / gh0stl1ne** (https://gitlab.com/gh0stl1ne/Bioserver2) : code de référence et enveloppes natives portées sous AGPL-3.0 (`EVENTDAT`, `CHATOUT`).
-- **REO** (https://github.com/Ninjacornix/reo) : recherche et références historiques sur le protocole Outbreak.
-- **RFC 5389** (https://datatracker.ietf.org/doc/html/rfc5389) : spécification STUN.
-- **stunnel** (https://www.stunnel.org/) : terminaison TLS historique séparée pour les essais du client japonais original.
-- **golang.org/x/crypto** & **golang.org/x/text** : Blowfish et encodage Shift-JIS (licences BSD conservées dans `licenses/`).
+- **bioserver-docker / panzer punk** (https://github.com/panzer-punk/bioserver-docker): BioServer containerization and reference integration.
+- **openSNAP** (https://github.com/GrenderG/openSNAP): SNAP protocol reference and base for the Go codec and native challenge port (`SLUS_207.65`, `SLES_533.19`, `SLUS_209.84`).
+- **obsrv / BioServer** (https://obsrv.org): Java code adapted to Go for KDDI framing, login, and directory navigation (`SLPM_654.28`, `SLPM_656.92`).
+- **BioServer2 / gh0stl1ne** (https://gitlab.com/gh0stl1ne/Bioserver2): reference code and native envelopes ported under AGPL-3.0 (`EVENTDAT`, `CHATOUT`).
+- **REO** (https://github.com/Ninjacornix/reo): historical Outbreak protocol research and references.
+- **RFC 5389** (https://datatracker.ietf.org/doc/html/rfc5389): STUN specification.
+- **stunnel** (https://www.stunnel.org/): separate legacy TLS termination component used for original Japanese client testing.
+- **golang.org/x/crypto** &amp; **golang.org/x/text**: Blowfish and Shift-JIS encoding (BSD licenses preserved in `licenses/`).
